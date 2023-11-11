@@ -1,4 +1,5 @@
 import {
+  background,
   Button,
   Flex,
   FormControl,
@@ -16,6 +17,7 @@ import {
   useDisclosure,
   useToast,
   VStack,
+  Image,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -41,41 +43,66 @@ const Navbar = () => {
       align="center"
       justify="space-between"
       wrap="wrap"
-      padding="1rem"
-      bg="teal.500"
-      color="white"
+      padding="1.5rem"
+      color="#6F4FD4"
+      boxShadow="lg"
+      mb={5}
     >
       <Link to="/">
-        <Flex align="center" mr={5} cursor="pointer">
-          <Text fontSize="xl" fontWeight="bold">
-            My Website
+        <Flex align="center" ml={5} cursor="pointer">
+          <Image
+            w={8}
+            mr={3}
+            src="https://www.nemaweb.org/images/library/reports-pubs-01.png"
+          ></Image>
+          <Text fontSize="2xl" fontWeight="bold">
+            Library
           </Text>
         </Flex>
       </Link>
       <HStack>
-        {isLogin && (
-          <Link to="/newbook">
-            <Button colorScheme="blackAlpha">Create New Book</Button>
+        {!isLogin && (
+          <Link to="/register">
+            <Button width="6rem" borderRadius="50" bgColor="white">
+              Register
+            </Button>
           </Link>
         )}
-        {!isLogin ? (
-          <Button onClick={onOpen} colorScheme="blue">
-            Login
-          </Button>
-        ) : (
+        {!isLogin && (
+          <Link to="/login">
+            <Button
+              width="6rem"
+              borderRadius="50"
+              color="white"
+              bgColor="#6F4FD4"
+            >
+              Login
+            </Button>
+          </Link>
+        )}
+        {isLogin && (
+          <Link to="/newbook">
+            <Button bgColor="white" borderRadius={50}>
+              Create New Book
+            </Button>
+          </Link>
+        )}
+        {isLogin && (
           <Button
-            colorScheme="blue"
+            colorScheme="red"
+            borderRadius={50}
+            width="6rem"
             onClick={() => {
               window.localStorage.removeItem("token");
               setIsLogin(false);
-              navigate("/")
+              navigate("/");
             }}
           >
             Logout
           </Button>
         )}
       </HStack>
-
+      {/* 
       <Modal isOpen={isOpen} onClose={onClose}>
         <form
           id="login-form"
@@ -136,7 +163,7 @@ const Navbar = () => {
             </ModalFooter>
           </ModalContent>
         </form>
-      </Modal>
+      </Modal> */}
     </Flex>
   );
 };

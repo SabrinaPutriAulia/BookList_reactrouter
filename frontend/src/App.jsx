@@ -6,6 +6,8 @@ import EditBookPage from "./pages/Editbook";
 import Homepage from "./pages/Homepage";
 import NewBookPage from "./pages/NewBooks";
 import Register from "./pages/Register";
+import Login from "./pages/Login";
+import PrivateRoute from "./components/PrivateRoutes";
 
 function App() {
   return (
@@ -15,9 +17,31 @@ function App() {
         <Routes>
           <Route path={"/"} element={<Homepage />} />
           <Route path={"/register"} element={<Register />} />
-          <Route path={"/newbook"} element={<NewBookPage />} />
-          <Route path={"/books/:id"} element={<BookDetails />} />
-          <Route path={"/editbook/:id"} element={<EditBookPage />} />
+          <Route path={"/login"} element={<Login />} />
+          <Route
+            path={"/newbook"}
+            element={
+              <PrivateRoute>
+                <NewBookPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={"/books/:id"}
+            element={
+              <PrivateRoute>
+                <BookDetails />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path={"/editbook/:id"}
+            element={
+              <PrivateRoute>
+                <EditBookPage />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </Router>
     </VStack>

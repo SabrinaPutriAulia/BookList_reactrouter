@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Divider,
   Flex,
   Heading,
   HStack,
@@ -60,22 +61,26 @@ export default function BookDetails() {
             />
           </Box>
           <Box ml="8">
-            <Heading as="h1" size="lg">
+            <Heading as="h1" size="2xl">
               {book.title}
             </Heading>
-            <Text fontSize="xl" fontWeight="semibold" color="gray.500">
+            <Text fontSize="xl" fontWeight="semibold" color="gray.600" mt="2">
               {book.author}
             </Text>
-            <Text fontSize="xl" fontWeight="semibold" color="gray.500">
-              {book.publisher}
+            <Text fontSize="md" fontWeight="medium" color="gray.700" mt="4">
+              {book.pages} pages
             </Text>
-            <Text fontSize="xl" fontWeight="semibold" color="gray.500" mb="4">
-              {book.year} | {book.pages} pages
+            <Text fontSize="md" fontWeight="medium" color="gray.700" mt="2">
+              Published by {book.publisher}
+            </Text>
+
+            <Text fontSize="md" fontWeight="medium" color="gray.700" mt="2">
+              First published {book.year}
             </Text>
           </Box>
         </Flex>
       )}
-      {localStorage.getItem('token') && (
+      {localStorage.getItem("token") && (
         <HStack>
           <Popover>
             <PopoverTrigger>
@@ -94,7 +99,9 @@ export default function BookDetails() {
             </PopoverContent>
           </Popover>
           <Link to={`/editbook/${id}`}>
-            <Button>Edit</Button>
+            <Button bgColor="orange.300" color={"white"}>
+              Edit
+            </Button>
           </Link>
         </HStack>
       )}

@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   FormControl,
   FormLabel,
@@ -84,7 +85,7 @@ export default function BookForm({ bookData }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <VStack spacing={4}>
+      <VStack spacing={4} w={"lg"} mt={5}>
         <FormControl>
           <FormLabel>Title</FormLabel>
           <Input name="title" required defaultValue={bookData?.title} />
@@ -132,9 +133,16 @@ export default function BookForm({ bookData }) {
             />
           </FormControl>
         )}
-
-        <Button type="submit">{bookData ? "Edit Book" : "Create Book"}</Button>
       </VStack>
+      <Button
+        type="submit"
+        variant="solid"
+        bg="#6F4FD4"
+        color={"white"}
+        mt={10}
+      >
+        {bookData ? "Edit Book" : "Create Book"}
+      </Button>
     </form>
   );
 }
